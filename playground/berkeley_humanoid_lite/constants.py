@@ -20,6 +20,7 @@ from etils import epath
 
 ROOT_PATH = epath.Path(__file__).parent
 FLAT_TERRAIN_XML = ROOT_PATH / "xmls" / "scene_flat_terrain.xml"
+REFERENCE_MOTION_PKL = ROOT_PATH / "data" / "polynomial_coefficients.pkl"
 # ROUGH_TERRAIN_XML = ROOT_PATH / "xmls" / "scene_rough_terrain.xml"
 # FLAT_TERRAIN_BACKLASH_XML = ROOT_PATH / "xmls" / "scene_flat_terrain_backlash.xml"
 # ROUGH_TERRAIN_BACKLASH_XML = ROOT_PATH / "xmls" / "scene_rough_terrain_backlash.xml"

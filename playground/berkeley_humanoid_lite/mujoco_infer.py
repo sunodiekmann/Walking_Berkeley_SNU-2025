@@ -9,6 +9,7 @@ from playground.common.onnx_infer import OnnxInfer
 from playground.common.poly_reference_motion_numpy import PolyReferenceMotion
 from playground.common.utils import LowPassActionFilter
 
+from playground.berkeley_humanoid_lite import constants
 from playground.berkeley_humanoid_lite.mujoco_infer_base import MJInferBase
 
 USE_MOTOR_SPEED_LIMITS = True
@@ -224,12 +225,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--reference_data",
         type=str,
-        default="playground/berkeley_humanoid_lite/data/polynomial_coefficients.pkl",
+        default=str(constants.REFERENCE_MOTION_PKL),
     )
     parser.add_argument(
         "--model_path",
         type=str,
-        default="playground/berkeley_humanoid_lite/xmls/scene_flat_terrain.xml",
+        default=str(constants.FLAT_TERRAIN_XML),
     )
     parser.add_argument("--standing", action="store_true", default=False)
 

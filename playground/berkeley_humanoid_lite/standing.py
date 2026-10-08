@@ -124,9 +124,7 @@ class Standing(bhl_base.BHLEnv):
         ).ctrl  # ctrl of all the actual joints (no floating base and no backlash)
 
         if USE_IMITATION_REWARD:
-            self.PRM = PolyReferenceMotion(
-                "playground/berkeley_humanoid_lite/data/polynomial_coefficients.pkl"
-            )
+            self.PRM = PolyReferenceMotion(str(constants.REFERENCE_MOTION_PKL))
 
         # Note: First joint is freejoint.
         # get the range of the joints

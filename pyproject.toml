@@ -1,7 +1,7 @@
 [project]
-name = "Open_Duck_Playground"
+name = "walking-berkeley"
 version = "0.1.0"
-description = "Add your description here"
+description = "RL locomotion training and MuJoCo sim-to-sim for the Berkeley Humanoid Lite"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

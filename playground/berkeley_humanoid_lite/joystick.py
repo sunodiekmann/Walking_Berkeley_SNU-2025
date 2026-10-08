@@ -526,9 +526,7 @@ class Joystick(bhl_base.BHLEnv):
 
       # Imitation reference motion
       if USE_IMITATION_REWARD:
-          self.PRM = PolyReferenceMotion(
-              "berkeley_humanoid_lite/data/polynomial_coefficients.pkl"
-          )
+          self.PRM = PolyReferenceMotion(str(constants.REFERENCE_MOTION_PKL))
           example_ref = jp.asarray(
               self.PRM.get_reference_motion(0.0, 0.0, 0.0, 0), dtype=jp.float32
           )
