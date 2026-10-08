@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "192ab9c484f00d0dd33b8f01",
+    "documentMicroversion": "36bc89281b497acb3be29aeb",
+    "documentVersion": "ba8d79a3165a79ce450f3117",
+    "elementId": "6b80b19385617d973967aac9",
+    "fullConfiguration": "default",
+    "id": "MeblYq16d3sBRMcvD",
+    "isStandardContent": false,
+    "name": "Motor Shell <1>",
+    "partId": "JHD",
+    "suppressed": false,
+    "type": "Part"
+}

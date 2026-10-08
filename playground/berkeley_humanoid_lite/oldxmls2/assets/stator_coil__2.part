@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "73bb3a028ba555ff5427a78d",
+    "documentMicroversion": "bfea925247faa5b0170a0bce",
+    "documentVersion": "3b8bf1f9c5b7d605e69a6a11",
+    "elementId": "e5ee0a3e1277553221e721e6",
+    "fullConfiguration": "default",
+    "id": "M5T8ve1SkbHxmbqBD",
+    "isStandardContent": false,
+    "name": "Stator Coil <1>",
+    "partId": "JSD",
+    "suppressed": false,
+    "type": "Part"
+}

@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "92e1c7f05ce332f629118324",
+    "documentMicroversion": "0864b7ba6d022d513f092a07",
+    "documentVersion": "7c503b98ef87a3fefc6365d5",
+    "elementId": "67b04a2b3bd9fe31d6ff9208",
+    "fullConfiguration": "default",
+    "id": "MxbUPLp9Hxedq6wYc",
+    "isStandardContent": false,
+    "name": "BeeLink NUC Computer <1>",
+    "partId": "JHD",
+    "suppressed": false,
+    "type": "Part"
+}

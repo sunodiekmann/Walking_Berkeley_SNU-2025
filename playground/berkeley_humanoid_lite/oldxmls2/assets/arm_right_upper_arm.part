@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "19741954937f35fa34910a49",
+    "documentMicroversion": "9de70807b75d67deed2d5aa7",
+    "documentVersion": "3e3723f2cdd69b6f851a1d33",
+    "elementId": "1f1ad1c90b2b927ebbfc36d3",
+    "fullConfiguration": "default",
+    "id": "M9hrQ7NSfby1zMZuy",
+    "isStandardContent": false,
+    "name": "arm_right_upper_arm <1>",
+    "partId": "JFL",
+    "suppressed": false,
+    "type": "Part"
+}

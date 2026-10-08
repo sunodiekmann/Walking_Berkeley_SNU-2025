@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "5e51f60a048e67742712de7a",
+    "documentMicroversion": "036c7330af905f09771906e9",
+    "documentVersion": "57f2cce7450a8829122eb9b7",
+    "elementId": "a97a0d8fcb9910057a7fcb4a",
+    "fullConfiguration": "default",
+    "id": "MwpR+W5ha8WFzZAdq",
+    "isStandardContent": false,
+    "name": "arm_left_fore_arm <1>",
+    "partId": "JFX",
+    "suppressed": false,
+    "type": "Part"
+}

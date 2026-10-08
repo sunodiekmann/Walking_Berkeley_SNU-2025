@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "4803515af95a91b074519648",
+    "documentMicroversion": "af554b0b4dba9bc339c46e26",
+    "documentVersion": "aba77e9a6f9b78e95a470a8d",
+    "elementId": "4d2a755b3c375e6b137f7424",
+    "fullConfiguration": "default",
+    "id": "M0cpX/TrjlxdCNEgQ",
+    "isStandardContent": false,
+    "name": "arm_left_shoulder_socket <2>",
+    "partId": "JFD",
+    "suppressed": false,
+    "type": "Part"
+}

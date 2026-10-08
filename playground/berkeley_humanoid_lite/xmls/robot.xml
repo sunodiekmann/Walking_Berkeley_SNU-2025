@@ -1,0 +1,349 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/b79563c6b118af5153e16b95/w/07852d0b8411373f3cccadf1/e/af8d9cc5bcfd9d9f97125859 -->
+<mujoco model="my-robot2">
+  <option iterations="2" ls_iterations="5" timestep="0.002"> <!-- ADDED -->
+    <flag eulerdamp="disable"/> <!-- ADDED -->
+  </option>
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+  <default>
+    <default class="my-robot2">
+      <position kp="30" forcerange="-60 60" forcelimited="true" gear="2"/>
+      <joint damping="1" armature="0.02" frictionloss="0.0001"/>
+
+      <default class="visual">
+        <geom contype="0" conaffinity="0" group="2"/>
+      </default>
+
+      <default class="collision">
+        <geom contype="1" conaffinity="1"
+            friction="1.0 0.005 0.0001"
+            condim="3"
+            solref="0.02 1"
+            solimp="0.95 0.99 0.005"/>
+      </default>
+
+    </default>
+  </default>
+
+  <worldbody>
+    <!-- Link base -->
+    <body name="base" pos="0 0 0" quat="1 0 0 0" childclass="my-robot2">
+      <freejoint name="base_freejoint"/>
+      <inertial pos="0.0301256 0.000805373 0.658389" mass="4.42875" fullinertia="0.0542572 0.0707136 0.0573367 -0.000418288 -0.000518312 1.73031e-05"/>
+      <!-- Part base_parts -->
+      <geom type="mesh" class="visual" pos="0.0301256 0.000805373 0.658389" quat="1 0 0 0" mesh="base_visual" material="base_visual_material"/>
+      <!-- Frame trunk -->
+      <site group="3" name="trunk" pos="-0.00025 2.39394e-17 0.7205" quat="1 -1.42019e-16 2.89352e-15 -2.70617e-16"/>
+      <!-- Link imu_2 -->
+      <body name="imu_2" pos="0.061722 -5.97549e-17 0.68" quat="1 -0 5.77316e-15 -6.03078e-16">
+        <!-- Joint from base to imu_2 -->
+        <!-- Joint is "fixed", skipping it -->
+        <inertial pos="2.95445e-18 9.72026e-19 0.0025" mass="0.00197704" fullinertia="1.11441e-07 4.06118e-08 1.43815e-07 -4.0275e-38 0 0"/>
+        <!-- Part imu_2_parts -->
+        <geom type="mesh" class="visual" pos="0 9.72026e-19 0.0025" quat="1 -0 -5.44009e-15 6.03078e-16" mesh="imu_2_visual" material="imu_2_visual_material"/>
+        <!-- Frame imu -->
+        <site group="3" name="imu" pos="0 -6.33816e-19 0.005" quat="1 0 0 0"/>
+      </body>
+      <!-- Link leg_left_hip_roll -->
+      <body name="leg_left_hip_roll" pos="-0.0290919 0.08 0.542631" quat="0.92388 1.01842e-15 0.382683 -3.07046e-15">
+        <!-- Joint from base to leg_left_hip_roll -->
+        <joint axis="0 0 1" name="leg_left_hip_roll_joint" type="hinge" limited="true" range="-0.17453292519943028 1.5707963267948992"/>
+        <inertial pos="-0.00410941 -0.000112596 -0.0464623" mass="0.83786" fullinertia="0.000979918 0.000896043 0.000727678 6.45954e-06 -1.63173e-05 -5.43389e-06"/>
+        <!-- Part leg_left_hip_roll_parts -->
+        <geom type="mesh" class="visual" pos="-0.00410941 -0.000112596 -0.0464623" quat="0.92388 -1.00665e-15 -0.382683 2.52576e-15" mesh="leg_left_hip_roll_visual" material="leg_left_hip_roll_visual_material"/>
+        <!-- Link leg_left_hip_yaw -->
+        <body name="leg_left_hip_yaw" pos="0.027 9.71445e-17 -0.052" quat="0.5 -0.5 0.5 -0.5">
+          <!-- Joint from leg_left_hip_roll to leg_left_hip_yaw -->
+          <joint axis="0 0 1" name="leg_left_hip_yaw_joint" type="hinge" limited="true" range="-0.981747704246805 0.5890486225480915"/>
+          <inertial pos="-0.00411632 -8.63203e-05 0.0463382" mass="0.837683" fullinertia="0.000979031 0.000898166 0.000724287 -1.13217e-06 1.96352e-05 -5.91541e-06"/>
+          <!-- Part leg_left_hip_yaw_parts -->
+          <geom type="mesh" class="visual" pos="-0.00411632 -8.63203e-05 0.0463382" quat="0.270598 0.653281 -0.653281 0.270598" mesh="leg_left_hip_yaw_visual" material="leg_left_hip_yaw_visual_material"/>
+          <!-- Link leg_left_hip_pitch -->
+          <body name="leg_left_hip_pitch" pos="0.027 -5.55112e-17 0.052" quat="0.653281 0.270598 -0.653281 -0.270598">
+            <!-- Joint from leg_left_hip_yaw to leg_left_hip_pitch -->
+            <joint axis="0 0 1" name="leg_left_hip_pitch_joint" type="hinge" limited="true" range="-1.898045561543828 0.9817477042468157"/>
+            <inertial pos="0.0030405 0.120388 0.0210924" mass="0.947974" fullinertia="0.00286449 0.00102465 0.00259958 0.00012235 -2.15676e-05 0.000265775"/>
+            <!-- Part leg_left_hip_pitch_parts -->
+            <geom type="mesh" class="visual" pos="0.0030405 0.120388 0.0210924" quat="0.707107 0.707107 -5.10703e-15 1.53013e-16" mesh="leg_left_hip_pitch_visual" material="leg_left_hip_pitch_visual_material"/>
+            <!-- Link leg_left_knee_pitch -->
+            <body name="leg_left_knee_pitch" pos="4.09395e-16 0.15 -0.018" quat="9.49241e-15 5.73388e-15 5.44009e-15 -1">
+              <!-- Joint from leg_left_hip_pitch to leg_left_knee_pitch -->
+              <joint axis="0 0 1" name="leg_left_knee_pitch_joint" type="hinge" limited="true" range="-2.637889906509372e-13 2.4434609527917974"/>
+              <inertial pos="-4.14041e-05 -0.112249 0.0257397" mass="0.653864" fullinertia="0.00230126 0.000559753 0.00203727 -4.24923e-07 1.36589e-06 3.7889e-05"/>
+              <!-- Part leg_left_knee_pitch_parts -->
+              <geom type="mesh" class="visual" pos="-4.14041e-05 -0.112249 0.0257397" quat="1.05055e-14 7.54136e-15 0.707107 0.707107" mesh="leg_left_knee_pitch_visual" material="leg_left_knee_pitch_visual_material"/>
+              <!-- Link leg_left_ankle_pitch -->
+              <body name="leg_left_ankle_pitch" pos="-2.42341e-15 -0.16 -0.003" quat="9.32032e-14 4.89156e-15 3.55271e-15 -1">
+                <!-- Joint from leg_left_knee_pitch to leg_left_ankle_pitch -->
+                <joint axis="0 0 1" name="leg_left_ankle_pitch_joint" type="hinge" limited="true" range="-0.7853981633972795 0.785398163397617"/>
+                <inertial pos="0.0131065 0.0273743 0.0274153" mass="0.106196" fullinertia="0.000188241 0.000142962 8.17202e-05 -2.50802e-05 -7.26755e-06 -7.72963e-06"/>
+                <!-- Part leg_left_ankle_pitch_parts -->
+                <geom type="mesh" class="visual" pos="0.0131065 0.0273743 0.0274153" quat="0.707107 0.707107 -7.70495e-14 -7.29941e-14" mesh="leg_left_ankle_pitch_visual" material="leg_left_ankle_pitch_visual_material"/>
+                <!-- Link leg_left_ankle_roll -->
+                <body name="leg_left_ankle_roll" pos="0.03 0.05 0.025" quat="0.707107 7.53555e-14 0.707107 1.02984e-13">
+                  <!-- Joint from leg_left_ankle_pitch to leg_left_ankle_roll -->
+                  <joint axis="0 0 1" name="leg_left_ankle_roll_joint" type="hinge" limited="true" range="-0.2617993877993759 0.2617993877989229"/>
+                  <inertial pos="2.29341e-05 0.0226611 0.0197836" mass="0.706476" fullinertia="0.00198705 0.00190341 0.000619673 5.37011e-07 -8.3949e-07 0.000143151"/>
+                  <!-- Part leg_left_ankle_roll_parts -->
+                  <geom name="left_foot_bottom" class="collision" pos="1.45409e-14 0.03 0.006" quat="0.707107 0.707107 -8.02691e-14 3.14104e-14" type="box" size="0.036 0.11 0.02"/>
+                  <geom type="mesh" class="visual" pos="2.29341e-05 0.0226611 0.0197836" quat="0.5 0.5 -0.5 0.5" mesh="leg_left_ankle_roll_visual" material="leg_left_ankle_roll_visual_material"/>
+                  <!-- Frame left_foot -->
+                  <site group="3" name="left_foot" pos="1.57444e-14 0.0475 0.006" quat="0.5 0.5 -0.5 0.5"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link leg_right_hip_roll -->
+      <body name="leg_right_hip_roll" pos="-0.0290919 -0.08 0.542631" quat="4.47007e-15 0.382683 -1.33227e-15 0.92388">
+        <!-- Joint from base to leg_right_hip_roll -->
+        <joint axis="0 0 1" name="leg_right_hip_roll_joint" type="hinge" limited="true" range="-1.5707963267948752 0.17453292519945426"/>
+        <inertial pos="0.00410941 -0.00018505 -0.0464478" mass="0.83786" fullinertia="0.000979766 0.000896334 0.000727235 -3.69135e-06 1.57667e-05 -4.74708e-06"/>
+        <!-- Part leg_right_hip_roll_parts -->
+        <geom type="mesh" class="visual" pos="0.00410941 -0.00018505 -0.0464478" quat="4.6982e-15 -0.382683 1.55431e-15 -0.92388" mesh="leg_right_hip_roll_visual" material="leg_right_hip_roll_visual_material"/>
+        <!-- Link leg_right_hip_yaw -->
+        <body name="leg_right_hip_yaw" pos="-0.027 3.46945e-16 -0.052" quat="0.5 -0.5 -0.5 0.5">
+          <!-- Joint from leg_right_hip_roll to leg_right_hip_yaw -->
+          <joint axis="0 0 1" name="leg_right_hip_yaw_joint" type="hinge" limited="true" range="-0.5890486225481075 0.981747704246789"/>
+          <inertial pos="0.00411632 -1.3851e-05 0.0463238" mass="0.837683" fullinertia="0.000978901 0.000898454 0.000723868 -1.63559e-06 -1.90847e-05 -5.23378e-06"/>
+          <!-- Part leg_right_hip_yaw_parts -->
+          <geom type="mesh" class="visual" pos="0.00411632 -1.3851e-05 0.0463238" quat="0.270598 0.653281 -0.653281 0.270598" mesh="leg_right_hip_yaw_visual" material="leg_right_hip_yaw_visual_material"/>
+          <!-- Link leg_right_hip_pitch -->
+          <body name="leg_right_hip_pitch" pos="-0.027 1.22125e-15 0.052" quat="0.653281 0.270598 -0.653281 -0.270598">
+            <!-- Joint from leg_right_hip_yaw to leg_right_hip_pitch -->
+            <joint axis="0 0 1" name="leg_right_hip_pitch_joint" type="hinge" limited="true" range="-1.8980455615438512 0.9817477042467926"/>
+            <inertial pos="0.00319928 0.120388 -0.0210924" mass="0.947974" fullinertia="0.00286448 0.00102371 0.00259864 0.000117078 2.6845e-05 -0.000265774"/>
+            <!-- Part leg_right_hip_pitch_parts -->
+            <geom type="mesh" class="visual" pos="0.00319928 0.120388 -0.0210924" quat="0.707107 0.707107 1.11022e-16 1.32924e-15" mesh="leg_right_hip_pitch_visual" material="leg_right_hip_pitch_visual_material"/>
+            <!-- Link leg_right_knee_pitch -->
+            <body name="leg_right_knee_pitch" pos="-2.77556e-17 0.15 0.018" quat="1 8.22259e-16 8.88178e-16 2.22045e-16">
+              <!-- Joint from leg_right_hip_pitch to leg_right_knee_pitch -->
+              <joint axis="0 0 1" name="leg_right_knee_pitch_joint" type="hinge" limited="true" range="-1.1191048088221578e-13 2.4434609527919493"/>
+              <inertial pos="-5.09429e-05 0.112249 -0.0257397" mass="0.653864" fullinertia="0.00230126 0.000559752 0.00203727 1.34936e-06 -1.17826e-06 3.7889e-05"/>
+              <!-- Part leg_right_knee_pitch_parts -->
+              <geom type="mesh" class="visual" pos="-5.09429e-05 0.112249 -0.0257397" quat="0.707107 0.707107 -7.77156e-16 1.51709e-15" mesh="leg_right_knee_pitch_visual" material="leg_right_knee_pitch_visual_material"/>
+              <!-- Link leg_right_ankle_pitch -->
+              <body name="leg_right_ankle_pitch" pos="1.37911e-15 0.16 0.003" quat="1 2.80331e-15 2.66454e-15 -4.05231e-14">
+                <!-- Joint from leg_right_knee_pitch to leg_right_ankle_pitch -->
+                <joint axis="0 0 1" name="leg_right_ankle_pitch_joint" type="hinge" limited="true" range="-0.7853981633975051 0.7853981633973914"/>
+                <inertial pos="0.0131065 0.0273743 -0.0274153" mass="0.106196" fullinertia="0.000188241 0.000142962 8.17203e-05 -2.50802e-05 7.26754e-06 7.72962e-06"/>
+                <!-- Part leg_right_ankle_pitch_parts -->
+                <geom type="mesh" class="visual" pos="0.0131065 0.0273743 -0.0274153" quat="0.707107 0.707107 2.60902e-14 3.21635e-14" mesh="leg_right_ankle_pitch_visual" material="leg_right_ankle_pitch_visual_material"/>
+                <!-- Link leg_right_ankle_roll -->
+                <body name="leg_right_ankle_roll" pos="0.03 0.05 -0.025" quat="0.707107 4.3729e-14 0.707107 3.42781e-14">
+                  <!-- Joint from leg_right_ankle_pitch to leg_right_ankle_roll -->
+                  <joint axis="0 0 1" name="leg_right_ankle_roll_joint" type="hinge" limited="true" range="-0.26179938779926665 0.26179938779903217"/>
+                  <inertial pos="2.29341e-05 0.0226611 0.0197836" mass="0.706476" fullinertia="0.00198705 0.00190341 0.000619673 5.37011e-07 -8.3949e-07 0.000143151"/>
+                  <!-- Part leg_right_ankle_roll_parts -->
+                  <geom name="right_foot_bottom" class="collision" pos="5.16957e-15 0.03 0.006" quat="0.707107 0.707107 1.11355e-13 -2.49964e-13" type="box" size="0.036 0.11 0.02"/>
+                  <geom type="mesh" class="visual" pos="2.29341e-05 0.0226611 0.0197836" quat="0.5 0.5 -0.5 0.5" mesh="leg_right_ankle_roll_visual" material="leg_right_ankle_roll_visual_material"/>
+                  <!-- Frame right_foot -->
+                  <site group="3" name="right_foot" pos="8.59729e-15 0.0475 0.006" quat="0.5 0.5 -0.5 0.5"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link arm_left_elbow_arm -->
+      <body name="arm_left_elbow_arm" pos="0.02 0.115 0.7985" quat="0.5 0.5 0.5 0.5">
+        <!-- Joint from base to arm_left_elbow_arm -->
+        <joint axis="0 0 1" name="left_shoulder_joint" type="hinge" range="0.000000 0.000001"/>
+        <inertial pos="0.0173463 -0.0262837 -0.02" mass="0.244156" fullinertia="0.00021175 0.000169925 0.000326012 -6.74838e-05 1.85202e-12 3.71923e-12"/>
+        <!-- Part arm_left_elbow_arm_parts -->
+        <geom type="mesh" class="visual" pos="0.0173463 -0.0262837 -0.02" quat="0.5 -0.5 -0.5 -0.5" mesh="arm_left_elbow_arm_visual" material="arm_left_elbow_arm_visual_material"/>
+        <!-- Link arm_left_upper_arm -->
+        <body name="arm_left_upper_arm" pos="0.078032 0.0248446 -0.02" quat="0.683013 0.183013 -0.683013 0.183013">
+          <!-- Joint from arm_left_elbow_arm to arm_left_upper_arm -->
+          <joint axis="0 0 1" name="left_upper_arm_joint" type="hinge" range="0.000000 0.000001"/>
+          <inertial pos="-4.35413e-06 -0.0563202 0.0200462" mass="0.767868" fullinertia="0.00201927 0.00053531 0.00207226 1.71643e-07 3.28293e-08 3.9818e-05"/>
+          <!-- Part arm_left_upper_arm_parts -->
+          <geom type="mesh" class="visual" pos="-4.35413e-06 -0.0563202 0.0200462" quat="0.5 -0.866025 1.44329e-15 2.47647e-15" mesh="arm_left_upper_arm_visual" material="arm_left_upper_arm_visual_material"/>
+          <!-- Link arm_left_fore_arm -->
+          <body name="arm_left_fore_arm" pos="-3.91003e-16 -0.16 0.03" quat="2.63678e-16 -1 -3.71975e-17 -4.83381e-16">
+            <!-- Joint from arm_left_upper_arm to arm_left_fore_arm -->
+            <joint axis="0 0 1" name="left_fore_arm_joint" type="hinge" range="0.000000 0.000001"/>
+            <inertial pos="0.0504542 8.32667e-16 0.00856487" mass="0.622" fullinertia="0.000442491 0.00109007 0.00115191 1.29427e-18 4.23769e-05 3.79471e-19"/>
+            <!-- Part arm_left_fore_arm_parts -->
+            <geom type="mesh" class="visual" pos="0.0504542 8.32667e-16 0.00856487" quat="0.866025 0.5 -2.88658e-15 1.69969e-15" mesh="arm_left_fore_arm_visual" material="arm_left_fore_arm_visual_material"/>
+            <!-- Link arm_left_wrist_attachment -->
+            <body name="arm_left_wrist_attachment" pos="0.0915 4.996e-16 0.0025" quat="0.683013 -0.183013 -0.683013 0.183013">
+              <!-- Joint from arm_left_fore_arm to arm_left_wrist_attachment -->
+              <joint axis="0 0 1" name="left_wrist_attachment_joint" type="hinge" range="0.000000 0.000001"/>
+              <inertial pos="0.00967916 -0.0167645 -0.0629049" mass="0.421572" fullinertia="0.000969387 0.00072152 0.00108284 0.000213867 0.000104309 -0.000180668"/>
+              <!-- Part arm_left_wrist_attachment_parts -->
+              <geom type="mesh" class="visual" pos="0.00967916 -0.0167645 -0.0629049" quat="0.5 0.5 0.5 -0.5" mesh="arm_left_wrist_attachment_visual" material="arm_left_wrist_attachment_visual_material"/>
+              <!-- Link assembly_3 -->
+              <body name="assembly_3" pos="0.039 -0.06755 -0.076" quat="1 0 1.87076e-30 -1.2481e-30">
+                <!-- Joint from arm_left_wrist_attachment to assembly_3 -->
+                <joint axis="0 0 1" name="left_chopstick_joint" type="hinge" range="0.000000 0.000001"/>
+                <inertial pos="-0.0420954 0.010508 -0.0546924" mass="0.340491" fullinertia="0.000470539 0.00170361 0.00178654 -3.42825e-05 -0.000298021 -7.28009e-05"/>
+                <!-- Part assembly_3_parts -->
+                <geom type="mesh" class="visual" pos="-0.0420954 0.010508 -0.0546924" quat="0.5 0.5 0.5 -0.5" mesh="assembly_3_visual" material="assembly_3_visual_material"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link arm_right_elbow_arm -->
+      <body name="arm_right_elbow_arm" pos="0.02 -0.115 0.7985" quat="0.5 0.5 0.5 0.5">
+        <!-- Joint from base to arm_right_elbow_arm -->
+        <joint axis="0 0 1" name="right_shoulder_joint" type="hinge" range="0.000000 0.000001"/>
+        <inertial pos="-0.0173464 -0.0262837 -0.02" mass="0.244156" fullinertia="0.00021175 0.000169925 0.000326012 6.74839e-05 1.45747e-12 -1.95898e-12"/>
+        <!-- Part arm_right_elbow_arm_parts -->
+        <geom type="mesh" class="visual" pos="-0.0173464 -0.0262837 -0.02" quat="0.5 -0.5 -0.5 -0.5" mesh="arm_right_elbow_arm_visual" material="arm_right_elbow_arm_visual_material"/>
+        <!-- Link arm_right_upper_arm -->
+        <body name="arm_right_upper_arm" pos="-0.078032 0.0248446 -0.02" quat="0.183013 0.683013 -0.183013 0.683013">
+          <!-- Joint from arm_right_elbow_arm to arm_right_upper_arm -->
+          <joint axis="0 0 1" name="right_upper_arm_joint" type="hinge" range="0.000000 0.000001"/>
+          <inertial pos="-4.31102e-06 0.0563203 0.0200462" mass="0.767867" fullinertia="0.00201926 0.000535309 0.00207225 -1.69697e-07 3.33449e-08 -3.98183e-05"/>
+          <!-- Part arm_right_upper_arm_parts -->
+          <geom type="mesh" class="visual" pos="-4.31102e-06 0.0563203 0.0200462" quat="0.5 0.866025 -2.44249e-15 4.17562e-15" mesh="arm_right_upper_arm_visual" material="arm_right_upper_arm_visual_material"/>
+          <!-- Link arm_right_fore_arm -->
+          <body name="arm_right_fore_arm" pos="-2.5874e-15 0.16 0.03" quat="1.38778e-16 1 5.1881e-15 2.32362e-17">
+            <!-- Joint from arm_right_upper_arm to arm_right_fore_arm -->
+            <joint axis="0 0 1" name="right_fore_arm_joint" type="hinge" range="0.000000 0.000001"/>
+            <inertial pos="0.0504542 -4.44089e-16 0.00856487" mass="0.622" fullinertia="0.000442491 0.00109007 0.00115191 4.19451e-18 4.23769e-05 7.58942e-19"/>
+            <!-- Part arm_right_fore_arm_parts -->
+            <geom type="mesh" class="visual" pos="0.0504542 -4.44089e-16 0.00856487" quat="0.866025 -0.5 1.66533e-15 6.8707e-15" mesh="arm_right_fore_arm_visual" material="arm_right_fore_arm_visual_material"/>
+            <!-- Link arm_right_wrist_attachment -->
+            <body name="arm_right_wrist_attachment" pos="0.0915 -4.44089e-16 0.0025" quat="0.183013 -0.683013 -0.183013 0.683013">
+              <!-- Joint from arm_right_fore_arm to arm_right_wrist_attachment -->
+              <joint axis="0 0 1" name="right_wrist_attachment_joint" type="hinge" range="0.000000 0.000001"/>
+              <inertial pos="-0.00766686 -0.0132792 -0.0655717" mass="0.577236" fullinertia="0.00108463 0.000813213 0.00122677 -0.000234266 -0.00010399 -0.000180116"/>
+              <!-- Part arm_right_wrist_attachment_parts -->
+              <geom type="mesh" class="visual" pos="-0.00766686 -0.0132792 -0.0655717" quat="0.5 0.5 0.5 -0.5" mesh="arm_right_wrist_attachment_visual" material="arm_right_wrist_attachment_visual_material"/>
+              <!-- Link assembly_5 -->
+              <body name="assembly_5" pos="-0.039 -0.06755 -0.076" quat="1 -0 0 2.48679e-31">
+                <!-- Joint from arm_right_wrist_attachment to assembly_5 -->
+                <joint axis="0 0 1" name="right_chopstick_joint" type="hinge" range="0.000000 0.000001"/>
+                <inertial pos="0.0433542 0.00896499 -0.0567516" mass="0.321318" fullinertia="0.000428609 0.00166622 0.00175598 2.32001e-05 0.000283229 -5.46684e-05"/>
+                <!-- Part assembly_5_parts -->
+                <geom type="mesh" class="visual" pos="0.0433542 0.00896499 -0.0567516" quat="0.5 0.5 0.5 -0.5" mesh="assembly_5_visual" material="assembly_5_visual_material"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <asset>
+    <mesh file="merged/assembly_3_visual.stl"/>
+    <mesh file="merged/arm_left_upper_arm_visual.stl"/>
+    <mesh file="merged/leg_left_knee_pitch_visual.stl"/>
+    <mesh file="merged/leg_left_ankle_roll_visual.stl"/>
+    <mesh file="merged/leg_right_hip_roll_visual.stl"/>
+    <mesh file="merged/leg_left_hip_yaw_visual.stl"/>
+    <mesh file="merged/leg_right_ankle_pitch_visual.stl"/>
+    <mesh file="merged/arm_left_fore_arm_visual.stl"/>
+    <mesh file="merged/arm_right_elbow_arm_visual.stl"/>
+    <mesh file="merged/arm_right_upper_arm_visual.stl"/>
+    <mesh file="merged/leg_right_hip_yaw_visual.stl"/>
+    <mesh file="merged/leg_right_knee_pitch_visual.stl"/>
+    <mesh file="merged/arm_left_wrist_attachment_visual.stl"/>
+    <mesh file="merged/leg_left_hip_pitch_visual.stl"/>
+    <mesh file="merged/leg_right_hip_pitch_visual.stl"/>
+    <mesh file="merged/leg_left_hip_roll_visual.stl"/>
+    <mesh file="merged/imu_2_visual.stl"/>
+    <mesh file="merged/assembly_5_visual.stl"/>
+    <mesh file="merged/leg_left_ankle_pitch_visual.stl"/>
+    <mesh file="merged/arm_left_elbow_arm_visual.stl"/>
+    <mesh file="merged/arm_right_fore_arm_visual.stl"/>
+    <mesh file="merged/base_visual.stl"/>
+    <mesh file="merged/arm_right_wrist_attachment_visual.stl"/>
+    <mesh file="merged/leg_right_ankle_roll_visual.stl"/>
+    <material name="base_visual_material" rgba="0.709038 0.709038 0.709038 0.886298"/>
+    <material name="imu_2_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="leg_left_hip_roll_visual_material" rgba="0.559597 0.559597 0.559597 0.699497"/>
+    <material name="leg_left_hip_yaw_visual_material" rgba="0.559547 0.559547 0.559547 0.699434"/>
+    <material name="leg_left_hip_pitch_visual_material" rgba="0.587522 0.587522 0.587522 0.734403"/>
+    <material name="leg_left_knee_pitch_visual_material" rgba="0.644721 0.644721 0.644721 0.805901"/>
+    <material name="leg_left_ankle_pitch_visual_material" rgba="0.743029 0.743029 0.743029 0.928786"/>
+    <material name="leg_left_ankle_roll_visual_material" rgba="0.664849 0.664849 0.664849 0.831061"/>
+    <material name="leg_right_hip_roll_visual_material" rgba="0.559597 0.559597 0.559597 0.699497"/>
+    <material name="leg_right_hip_yaw_visual_material" rgba="0.559547 0.559547 0.559547 0.699434"/>
+    <material name="leg_right_hip_pitch_visual_material" rgba="0.587522 0.587522 0.587522 0.734403"/>
+    <material name="leg_right_knee_pitch_visual_material" rgba="0.644721 0.644721 0.644721 0.805901"/>
+    <material name="leg_right_ankle_pitch_visual_material" rgba="0.743029 0.743029 0.743029 0.928786"/>
+    <material name="leg_right_ankle_roll_visual_material" rgba="0.664849 0.664849 0.664849 0.831061"/>
+    <material name="arm_left_elbow_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_left_upper_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_left_fore_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_left_wrist_attachment_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="assembly_3_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_right_elbow_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_right_upper_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_right_fore_arm_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="arm_right_wrist_attachment_visual_material" rgba="0.8 0.8 0.8 1"/>
+    <material name="assembly_5_visual_material" rgba="0.8 0.8 0.8 1"/>
+  </asset>
+
+  <actuator>
+    <position name="leg_left_ankle_roll_joint" joint="leg_left_ankle_roll_joint" ctrllimited="true" ctrlrange="-0.2617993877993395 0.26179938779895934" class="my-robot2"/>
+    <position name="leg_left_ankle_pitch_joint" joint="leg_left_ankle_pitch_joint"  ctrllimited="true" ctrlrange="-0.7853981633972795 0.785398163397617" class="my-robot2"/>
+    <position name="leg_left_knee_pitch_joint" joint="leg_left_knee_pitch_joint"  ctrllimited="true" ctrlrange="-2.637889906509372e-13 2.4434609527917974" class="my-robot2"/>
+    <position name="leg_left_hip_pitch_joint" joint="leg_left_hip_pitch_joint"  ctrllimited="true" ctrlrange="-1.898045561543828 0.9817477042468157" class="my-robot2"/>
+    <position name="leg_left_hip_yaw_joint" joint="leg_left_hip_yaw_joint"  ctrllimited="true" ctrlrange="-0.981747704246805 0.5890486225480915" class="my-robot2"/>
+    <position name="leg_left_hip_roll_joint" joint="leg_left_hip_roll_joint"  ctrllimited="true" ctrlrange="-0.17453292519943028 1.5707963267948992" class="my-robot2"/>
+
+    <position name="leg_right_ankle_roll_joint" joint="leg_right_ankle_roll_joint" ctrllimited="true" ctrlrange="-0.26179938779926665 0.26179938779903217" class="my-robot2"/>
+    <position name="leg_right_ankle_pitch_joint" joint="leg_right_ankle_pitch_joint" ctrllimited="true" ctrlrange="-0.7853981633975051 0.7853981633973914" class="my-robot2"/>    
+    <position name="leg_right_knee_pitch_joint" joint="leg_right_knee_pitch_joint"  ctrllimited="true" ctrlrange="-1.1191048088221578e-13 2.4434609527919493" class="my-robot2"/>    
+    <position name="leg_right_hip_pitch_joint" joint="leg_right_hip_pitch_joint" ctrllimited="true" ctrlrange="-1.8980455615438512 0.9817477042467926" class="my-robot2"/>
+    <position name="leg_right_hip_yaw_joint" joint="leg_right_hip_yaw_joint"  ctrllimited="true" ctrlrange="-0.5890486225481075 0.981747704246789" class="my-robot2"/>
+    <position name="leg_right_hip_roll_joint" joint="leg_right_hip_roll_joint"  ctrllimited="true" ctrlrange="-1.5707963267948752 0.17453292519945426" class="my-robot2"/>
+
+    <!-- <motor class="my-robot2" name="leg_left_hip_roll_joint" joint="leg_left_hip_roll_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_left_hip_yaw_joint" joint="leg_left_hip_yaw_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_left_hip_pitch_joint" joint="leg_left_hip_pitch_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_left_knee_pitch_joint" joint="leg_left_knee_pitch_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_left_ankle_pitch_joint" joint="leg_left_ankle_pitch_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_left_ankle_roll_joint" joint="leg_left_ankle_roll_joint" forcerange="-20 20"/>
+
+    <motor class="my-robot2" name="leg_right_hip_roll_joint" joint="leg_right_hip_roll_joint" ctrllimited="true" ctrlrange="-0.17453292519943028 1.5707963267948992"/>
+    <motor class="my-robot2" name="leg_right_hip_yaw_joint" joint="leg_right_hip_yaw_joint" ctrllimited="true" ctrlrange="-0.981747704246805 0.5890486225480915"/>
+    <motor class="my-robot2" name="leg_right_hip_pitch_joint" joint="leg_right_hip_pitch_joint" ctrllimited="true" ctrlrange="-1.898045561543828 0.9817477042468157"/>
+    <motor class="my-robot2" name="leg_right_knee_pitch_joint" joint="leg_right_knee_pitch_joint" ctrllimited="true" ctrlrange="-2.637889906509372e-13 2.4434609527917974"/>
+    <motor class="my-robot2" name="leg_right_ankle_pitch_joint" joint="leg_right_ankle_pitch_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="leg_right_ankle_roll_joint" joint="leg_right_ankle_roll_joint" forcerange="-20 20"/> -->
+
+    <!-- <motor class="my-robot2" name="left_shoulder_joint" joint="left_shoulder_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="left_upper_arm_joint" joint="left_upper_arm_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="left_fore_arm_joint" joint="left_fore_arm_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="left_wrist_attachment_joint" joint="left_wrist_attachment_joint" forcerange="-20 20"/>
+
+    <motor class="my-robot2" name="right_shoulder_joint" joint="right_shoulder_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="right_upper_arm_joint" joint="right_upper_arm_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="right_fore_arm_joint" joint="right_fore_arm_joint" forcerange="-20 20"/>
+    <motor class="my-robot2" name="right_wrist_attachment_joint" joint="right_wrist_attachment_joint" forcerange="-20 20"/> -->
+  </actuator>
+
+  <sensor>
+    <!-- Torso IMU-like signals (all attached to the 'torso' site) -->
+    <gyro           site="imu" name="gyro"/>
+    <velocimeter    site="imu" name="local_linvel"/>
+    <accelerometer  site="imu" name="accelerometer"/>
+    <framezaxis     objtype="site" objname="imu" name="upvector"/>
+    <framexaxis     objtype="site" objname="imu" name="forwardvector"/>
+    <framelinvel    objtype="site" objname="imu" name="global_linvel"/>
+    <frameangvel    objtype="site" objname="imu" name="global_angvel"/>
+    <framepos       objtype="site" objname="imu" name="position"/>
+    <framequat      objtype="site" objname="imu" name="orientation"/>
+
+    <!-- Feet kinematics (world-frame) -->
+    <framelinvel    objtype="site" objname="left_foot"  name="left_foot_global_linvel"/>
+    <framelinvel    objtype="site" objname="right_foot" name="right_foot_global_linvel"/>
+    <!-- Orientation axes at feet -->
+    <framexaxis     objtype="site" objname="left_foot"  name="left_foot_upvector"/>
+    <framexaxis     objtype="site" objname="right_foot" name="right_foot_upvector"/>
+    <!-- Foot positions (world-frame) -->
+    <framepos       objtype="site" objname="left_foot"  name="left_foot_pos"/>
+    <framepos       objtype="site" objname="right_foot" name="right_foot_pos"/>
+
+  </sensor>
+
+  <equality/>
+</mujoco>
